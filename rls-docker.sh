@@ -24,17 +24,17 @@ NC='\033[0m' # No Color
 
 case "$1" in
 "init")
-    if docker run --rm -d -v $PWD:/src docker.pkg.github.com/redislabs-training/slides-as-code/rl-slides-as-code:1.0.0 init; then
+    if docker run --rm -d -v $PWD:/src docker.pkg.github.com/redislabs-training/slides-as-code/rl-slides-as-code:1.0.1 init; then
         printf "${HIGHLIGHT1}You presentation ${HIGHLIGHT2}presentation.md${HIGHLIGHT1} was initialised successfully. Have fun!${NC}\n\n"
     else
         printf "${ERROR}Something went wrong. Did you run the setup script?${NC}\n\n"
     fi
     ;;
 "serve")
-    (sleep 2 && open http://localhost:${PORT_NUMBER}/presentation.html) & docker run --rm --init -p ${PORT_NUMBER}:${PORT_NUMBER} -v $PWD:/src docker.pkg.github.com/redislabs-training/slides-as-code/rl-slides-as-code:1.0.0 serve -s -p ${PORT_NUMBER}
+    (sleep 2 && open http://localhost:${PORT_NUMBER}/presentation.html) & docker run --rm --init -p ${PORT_NUMBER}:${PORT_NUMBER} -v $PWD:/src docker.pkg.github.com/redislabs-training/slides-as-code/rl-slides-as-code:1.0.1 serve -s -p ${PORT_NUMBER}
     ;;
 "export")
-    if docker run --rm -d -v $PWD:/src docker.pkg.github.com/redislabs-training/slides-as-code/rl-slides-as-code:1.0.0 export --l false; then
+    if docker run --rm -d -v $PWD:/src docker.pkg.github.com/redislabs-training/slides-as-code/rl-slides-as-code:1.0.1 export --l false; then
         printf "${HIGHLIGHT1}You presentation was exported in the ${HIGHLIGHT2}dist${HIGHLIGHT1} folder${NC}\n\n"
     else
         printf "${ERROR}Something went wrong.${NC}\n\n"
@@ -42,7 +42,7 @@ case "$1" in
     
     ;;
 "pdf")
-    docker run --rm -d -v $PWD:/src docker.pkg.github.com/redislabs-training/slides-as-code/rl-slides-as-code:1.0.0 pdf
+    docker run --rm -d -v $PWD:/src docker.pkg.github.com/redislabs-training/slides-as-code/rl-slides-as-code:1.0.1 pdf
     # printf "TODO"
     ;;
 *) 

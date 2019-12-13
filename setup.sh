@@ -39,9 +39,11 @@ printf "${GRAY}\n"
 
 docker login docker.pkg.github.com -u ${GITHUB_USERNAME} -p ${GITHUB_TOKEN} &> /dev/null
 
-if docker pull docker.pkg.github.com/redislabs-training/slides-as-code/rl-slides-as-code:1.0.0; then
+if docker pull docker.pkg.github.com/redislabs-training/slides-as-code/rl-slides-as-code:1.0.1; then
+    ./rls-docker.sh init
+    ./rls-docker.sh serve
     echo "=============="
-    printf "${SUCCESS}Success! Now run ${HIGHLIGHT2}./rls-docker.sh init${SUCCESS} init to initiate a presentation${NC}\n\n"
+    printf "${SUCCESS}Success! Now you can start editing the  ${HIGHLIGHT2}presentation.md${SUCCESS} file.${NC}\n\n"
 else
     echo "=============="
     printf "${ERROR}Those credentials don't look right! We weren't able to log you in.${NC}\n\n"
