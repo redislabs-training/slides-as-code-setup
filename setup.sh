@@ -36,10 +36,17 @@ echo "PORT_NUMBER=\"${PORT_NUMBER}\"" >> config.sh
 
 printf "${HIGHLIGHT1}Pulling docker image${NC}\n"
 printf "${GRAY}\n"
-docker login docker.pkg.github.com -u ${GITHUB_USERNAME} -p ${GITHUB_TOKEN} 
-docker pull docker.pkg.github.com/redislabs-training/slides-as-code/rl-slides-as-code:1.0.0
+
+docker login docker.pkg.github.com -u ${GITHUB_USERNAME} -p ${GITHUB_TOKEN} &> /dev/null
+
+if docker pull docker.pkg.github.com/redislabs-training/slides-as-code/rl-slides-as-code:1.0.0; then
+    echo "=============="
+    printf "${SUCCESS}Success! Now run ${HIGHLIGHT2}./rls-docker.sh init${SUCCESS} init to initiate a presentation${NC}\n\n"
+else
+    echo "=============="
+    printf "${ERROR}Those credentials don't look right! We weren't able to log you in.${NC}\n\n"
+fi
+
+docker logout docker.pkg.github.com &> /dev/null
+
 printf "${NC}"
-
-printf "\n\n"
-
-printf "${SUCCESS}Success! Now run ${HIGHLIGHT2}./rls-docker.sh init${SUCCESS} init to initiate a presentation${NC}\n\n"
