@@ -21,9 +21,13 @@ NC='\033[0m' # No Color
 #     exit
 # fi
 
-
 case "$1" in
 "init")
+    if [ "$INSTALLATION_TYPE" = "npm" ]; then
+    rls init
+    exit
+    fi
+
     if docker run --rm -d -v $PWD:/src docker.pkg.github.com/redislabs-training/slides-as-code/rl-slides-as-code:1.0.1 init; then
         printf "${HIGHLIGHT1}You presentation ${HIGHLIGHT2}presentation.md${HIGHLIGHT1} was initialised successfully. Have fun!${NC}\n\n"
     else
@@ -31,9 +35,20 @@ case "$1" in
     fi
     ;;
 "serve")
+    if [ "$INSTALLATION_TYPE" = "npm" ]; then
+    rls serve -p ${PORT_NUMBER}
+    exit
+    fi
+
     (sleep 2 && open http://localhost:${PORT_NUMBER}/presentation.html) & docker run --rm --init -p ${PORT_NUMBER}:${PORT_NUMBER} -v $PWD:/src docker.pkg.github.com/redislabs-training/slides-as-code/rl-slides-as-code:1.0.1 serve -s -p ${PORT_NUMBER}
     ;;
 "export")
+    if [ "$INSTALLATION_TYPE" = "npm" ]; then
+    rls export --l false
+    exit
+    fi
+
+
     if docker run --rm -d -v $PWD:/src docker.pkg.github.com/redislabs-training/slides-as-code/rl-slides-as-code:1.0.1 export --l false; then
         printf "${HIGHLIGHT1}You presentation was exported in the ${HIGHLIGHT2}dist${HIGHLIGHT1} folder${NC}\n\n"
     else
@@ -42,6 +57,11 @@ case "$1" in
     
     ;;
 "pdf")
+    if [ "$INSTALLATION_TYPE" = "npm" ]; then
+    rls pdf $2
+    exit
+    fi
+
     docker run --rm -d -v $PWD:/src docker.pkg.github.com/redislabs-training/slides-as-code/rl-slides-as-code:1.0.1 pdf
     # printf "TODO"
     ;;

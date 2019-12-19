@@ -1,6 +1,6 @@
 # Wrapper script for slides-as-code
 
-This is a wrapper script over a dockerized version of the [slides-as-code](github.com/redislabs-training/slides-as-code) project.
+This is a wrapper script over a dockerized version of the [slides-as-code](https://github.com/redislabs-training/slides-as-code-setup) project.
 
 ## Requirements
 The only requirement is to have Docker installed on your computer. Refer to the [Docker installation page](https://docs.docker.com/install/) for instructions on how to do it.
@@ -41,7 +41,7 @@ After you clone the repo you need to set up a few configuration variables and in
 You can edit the `presentation.md` with your changes and see the result in the browser. 
 
 ```
-./rls-docker.sh serve
+./rls.sh serve
 ```
 
 This command will start a webserver and will watch the `presentation.md` file for your changes. Every time you save the file your browser tab will refresh and you will see your latest changes.
@@ -51,11 +51,22 @@ This command will start a webserver and will watch the `presentation.md` file fo
 Running the bellow command will create a `dist` directory in which you will see a single `html` file with all your assets and images inlined. Since it's a simple and standalone html file it can run on any platform, in any browser, giving you all the usual [Remark](https://github.com/gnab/remark) functions, like [presentation mode](https://github.com/gnab/remark/wiki/Presentation-mode), separate window (to put on another screen) and so on.
 
 ```
-./rls-docker.sh export
+./rls.sh export
 ```
 
 ### Export to a pdf file
-To Do
+Running the bellow command will create a `pdf` directory in which you can find your pdf file. 
+
+```
+./rls.sh pdf
+```
+
+If you have multiple build steps on one slide you can instruct the exporter to put all of them in a single slide by using the `--handouts` option: 
+```
+./rls.sh pdf --handouts
+```
+
+>Note: Currently pdf export doesn't work with the Docker installation. It should be fixed soon.
 
 ### Format
 Slides are written in [Markdown](https://github.com/adam-p/markdown-here/wiki/Markdown-Cheatsheet), along with some useful **Remark.js** specific additions.
