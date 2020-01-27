@@ -53,7 +53,7 @@ case "$DOCKER_NPM" in
 
     if docker pull docker.pkg.github.com/redislabs-training/slides-as-code/rl-slides-as-code:1.0.1; then
         echo "=============="
-        printf "${SUCCESS}Success! Now you can ${HIGHLIGHT2}initialise${SUCCESS} your presentation${NC}\n\n"
+        printf "${SUCCESS}Success! Now you can ${HIGHLIGHT2}initialise${SUCCESS} your presentation by running ${HIGHLIGHT2}./rls.sh init${SUCCESS} ${NC}\n\n"
     else
         echo "=============="
         printf "${ERROR}Those credentials don't look right! We weren't able to log you in.${NC}\n\n"

@@ -25,11 +25,12 @@ case "$1" in
 "init")
     if [ "$INSTALLATION_TYPE" = "npm" ]; then
     rls init
+    printf "${HIGHLIGHT1}You presentation ${HIGHLIGHT2}presentation.md${HIGHLIGHT1} was initialised successfully. Serve it by running ./rls.sh serve and Have fun!${NC}\n\n"
     exit
     fi
 
     if docker run --rm -d -v $PWD:/src docker.pkg.github.com/redislabs-training/slides-as-code/rl-slides-as-code:1.0.1 init; then
-        printf "${HIGHLIGHT1}You presentation ${HIGHLIGHT2}presentation.md${HIGHLIGHT1} was initialised successfully. Have fun!${NC}\n\n"
+        printf "${HIGHLIGHT1}You presentation ${HIGHLIGHT2}presentation.md${HIGHLIGHT1} was initialised successfully. Serve it by running ./rls.sh serve and Have fun!${NC}\n\n"
     else
         printf "${ERROR}Something went wrong. Did you run the setup script?${NC}\n\n"
     fi
