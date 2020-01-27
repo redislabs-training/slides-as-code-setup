@@ -19,12 +19,12 @@ cd slides-as-code-setup
 ## Usage
 ### Quick Reference
 ```
-init        - Creates a default presentation.md file 
+./rls.sh init        - Creates a default presentation.md file 
               you can use as a starting point
-serve       - Serves the slidedeck in a browser
-export      - Exports the slidedeck as a standalone html 
+./rls.sh serve       - Serves the slidedeck in a browser
+./rls.sh export      - Exports the slidedeck as a standalone html 
               file (no dependencies)
-pdf         - Exports the slidedeck as a pdf
+./rls.sh pdf         - Exports the slidedeck as a pdf
 ```
 
 ### Initialise a presentation

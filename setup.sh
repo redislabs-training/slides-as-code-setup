@@ -52,10 +52,8 @@ case "$DOCKER_NPM" in
     docker login docker.pkg.github.com -u ${GITHUB_USERNAME} -p ${GITHUB_TOKEN} &> /dev/null
 
     if docker pull docker.pkg.github.com/redislabs-training/slides-as-code/rl-slides-as-code:1.0.1; then
-        ./rls-docker.sh init
-        ./rls-docker.sh serve
         echo "=============="
-        printf "${SUCCESS}Success! Now you can start editing the  ${HIGHLIGHT2}presentation.md${SUCCESS} file.${NC}\n\n"
+        printf "${SUCCESS}Success! Now you can ${HIGHLIGHT2}initialise${SUCCESS} your presentation${NC}\n\n"
     else
         echo "=============="
         printf "${ERROR}Those credentials don't look right! We weren't able to log you in.${NC}\n\n"
@@ -71,6 +69,8 @@ case "$DOCKER_NPM" in
     echo "registry=https://npm.pkg.github.com/redislabs-training" >> ~/.npmrc
     echo "//npm.pkg.github.com/:_authToken=${GITHUB_TOKEN}" >> ~/.npmrc
     npm install -g @redislabs-training/slides-as-code
+    rls init
+    rls serve -p ${PORT_NUMBER}
     ;;
 *) 
     printf "${HIGHLIGHT2}"
