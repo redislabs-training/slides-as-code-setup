@@ -51,7 +51,7 @@ case "$DOCKER_NPM" in
 
     docker login docker.pkg.github.com -u ${GITHUB_USERNAME} -p ${GITHUB_TOKEN} &> /dev/null
 
-    if docker pull docker.pkg.github.com/redislabs-training/slides-as-code/rl-slides-as-code:1.0.2; then
+    if docker pull docker.pkg.github.com/redislabs-training/slides-as-code/rl-slides-as-code:1.0.3; then
         echo "=============="
         printf "${SUCCESS}Success! Now you can ${HIGHLIGHT2}initialise${SUCCESS} your presentation by running ${HIGHLIGHT2}./rls.sh init${SUCCESS} ${NC}\n\n"
     else

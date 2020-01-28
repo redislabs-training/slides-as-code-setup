@@ -29,7 +29,7 @@ case "$1" in
     exit
     fi
 
-    if docker run --rm -d -v $PWD:/src docker.pkg.github.com/redislabs-training/slides-as-code/rl-slides-as-code:1.0.2 init; then
+    if docker run --rm -d -v $PWD:/src docker.pkg.github.com/redislabs-training/slides-as-code/rl-slides-as-code:1.0.3 init; then
         printf "${HIGHLIGHT1}You presentation ${HIGHLIGHT2}presentation.md${HIGHLIGHT1} was initialised successfully. Serve it by running ./rls.sh serve and Have fun!${NC}\n\n"
     else
         printf "${ERROR}Something went wrong. Did you run the setup script?${NC}\n\n"
@@ -41,7 +41,7 @@ case "$1" in
     exit
     fi
 
-    (sleep 2 && open http://localhost:${PORT_NUMBER}/presentation.html) & docker run --rm --init -p ${PORT_NUMBER}:${PORT_NUMBER} -v $PWD:/src docker.pkg.github.com/redislabs-training/slides-as-code/rl-slides-as-code:1.0.2 serve -s -p ${PORT_NUMBER}
+    (sleep 2 && open http://localhost:${PORT_NUMBER}/presentation.html) & docker run --rm --init -p ${PORT_NUMBER}:${PORT_NUMBER} -v $PWD:/src docker.pkg.github.com/redislabs-training/slides-as-code/rl-slides-as-code:1.0.3 serve -s -p ${PORT_NUMBER}
     ;;
 "export")
     if [ "$INSTALLATION_TYPE" = "npm" ]; then
@@ -50,7 +50,7 @@ case "$1" in
     fi
 
 
-    if docker run --rm -d -v $PWD:/src docker.pkg.github.com/redislabs-training/slides-as-code/rl-slides-as-code:1.0.2 export --l false; then
+    if docker run --rm -d -v $PWD:/src docker.pkg.github.com/redislabs-training/slides-as-code/rl-slides-as-code:1.0.3 export --l false; then
         printf "${HIGHLIGHT1}You presentation was exported in the ${HIGHLIGHT2}dist${HIGHLIGHT1} folder${NC}\n\n"
     else
         printf "${ERROR}Something went wrong.${NC}\n\n"
@@ -63,7 +63,7 @@ case "$1" in
     exit
     fi
 
-    docker run --rm -d -v $PWD:/src docker.pkg.github.com/redislabs-training/slides-as-code/rl-slides-as-code:1.0.2 pdf
+    docker run --rm -d -v $PWD:/src docker.pkg.github.com/redislabs-training/slides-as-code/rl-slides-as-code:1.0.3 pdf
     # printf "TODO"
     ;;
 *) 
