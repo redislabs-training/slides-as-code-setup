@@ -1,5 +1,7 @@
 #!/usr/bin/env bash
 
+DOCKER_VERSION="1.0.7"
+
 # Colours definition
 HIGHLIGHT1='\033[0;34m'
 HIGHLIGHT2='\033[0;33m'
@@ -51,7 +53,7 @@ case "$DOCKER_NPM" in
 
     docker login docker.pkg.github.com -u ${GITHUB_USERNAME} -p ${GITHUB_TOKEN} &> /dev/null
 
-    if docker pull docker.pkg.github.com/redislabs-training/slides-as-code/rl-slides-as-code:1.0.5; then
+    if docker pull docker.pkg.github.com/redislabs-training/slides-as-code/slides-as-code:${DOCKER_VERSION}; then
         echo "=============="
         printf "${SUCCESS}Success! Now you can ${HIGHLIGHT2}initialise${SUCCESS} your presentation by running ${HIGHLIGHT2}./rls.sh init${SUCCESS} ${NC}\n\n"
     else
@@ -66,11 +68,22 @@ case "$DOCKER_NPM" in
 "2")
     echo "INSTALLATION_TYPE=\"npm\"" >> config.sh
 
-    echo "registry=https://npm.pkg.github.com/redislabs-training" >> ~/.npmrc
-    echo "//npm.pkg.github.com/:_authToken=${GITHUB_TOKEN}" >> ~/.npmrc
+    NPM_CONFIG_FILE=~/.npmrc
+    if [[ -f "$NPM_CONFIG_FILE" ]]; then
+        if ! grep "registry=https://npm.pkg.github.com/redislabs-training" ${NPM_CONFIG_FILE}; then
+            echo "registry=https://npm.pkg.github.com/redislabs-training" >> ${NPM_CONFIG_FILE}
+        fi
+        if ! grep "//npm.pkg.github.com/:_authToken=${GITHUB_TOKEN}" ${NPM_CONFIG_FILE}; then
+            echo "//npm.pkg.github.com/:_authToken=${GITHUB_TOKEN}" >> ${NPM_CONFIG_FILE}
+        fi
+    else
+        echo "registry=https://npm.pkg.github.com/redislabs-training" >> ${NPM_CONFIG_FILE}
+        echo "//npm.pkg.github.com/:_authToken=${GITHUB_TOKEN}" >> ${NPM_CONFIG_FILE}
+    fi
+
     npm install -g @redislabs-training/slides-as-code
-    rls init
-    rls serve -p ${PORT_NUMBER}
+    redislabs-slides init
+    redislabs-slides serve -p ${PORT_NUMBER}
     ;;
 *) 
     printf "${HIGHLIGHT2}"
