@@ -1,5 +1,8 @@
 #!/usr/bin/env bash
-source config.sh
+
+RLS_EXEC=$0
+RLS_DIR=`dirname $0`
+source $RLS_DIR/config.sh
 
 DOCKER_VERSION="1.0.7"
 
