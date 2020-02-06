@@ -17,7 +17,12 @@ NC='\033[0m' # No Color
 if [ "$DOCKER_VERSION" == "" ]; then
     DOCKER_VERSION=${DEFAULT_DOCKER_VERSION}
 fi
-PORT_NUMBER="4101"
+
+if [ $2 = "-p" ]; then
+    PORT_NUMBER=${3}
+else
+    PORT_NUMBER="4100"
+fi
 
 printf "Using docker image version ${SUCCESS} ${DOCKER_VERSION} ${NC}\n\n"
 
@@ -43,7 +48,6 @@ case "$1" in
     fi
     ;;
 "serve")
-    #CONTINUE HERE  ---->
     sleep 4 && open http://localhost:${PORT_NUMBER}/presentation.html &
     eval ${CMD_SERVE}  ||  ( eval ${CMD_LOGIN} && eval ${CMD_SERVE} )
     ;;

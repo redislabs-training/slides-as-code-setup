@@ -19,12 +19,12 @@ cd slides-as-code-setup
 ## Usage
 ### Quick Reference
 ```
-./rls.sh init        - Creates a default presentation.md file 
+./rls.sh init                       - Creates a default presentation.md file 
               you can use as a starting point
-./rls.sh serve       - Serves the slidedeck in a browser
-./rls.sh export      - Exports the slidedeck as a standalone html 
+./rls.sh serve -p {PORT_NUMBER}     - Serves the slidedeck in a browser
+./rls.sh export                     - Exports the slidedeck as a standalone html 
               file (no dependencies)
-./rls.sh pdf         - Exports the slidedeck as a pdf
+./rls.sh pdf                        - Exports the slidedeck as a pdf
 ```
 
 ### Initialise a presentation
@@ -41,7 +41,13 @@ You can edit the `presentation.md` with your changes and see the result in the b
 ./rls.sh serve
 ```
 
-This command will start a webserver and will watch the `presentation.md` file for your changes. Every time you save the file your browser tab will refresh and you will see your latest changes.
+This command will start a webserver listening on the default port `4100` and will watch the `presentation.md` file for your changes. Every time you save the file your browser tab will refresh and you will see your latest changes. 
+If you want to run the server on a different port use the argument `-p {PORT_NUMBER}` as so:
+
+```
+./rls.sh serve -p {PORT_NUMBER}
+```
+
 
 ### Export to a standalone html file
 
