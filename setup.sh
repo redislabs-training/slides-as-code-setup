@@ -1,5 +1,7 @@
 #!/usr/bin/env bash
 
+DEFAULT_DOCKER_VERSION="1.0.8"
+
 
 # Colours definition
 HIGHLIGHT1='\033[0;34m'
@@ -9,7 +11,6 @@ ERROR='\033[0;31m'
 GRAY='\033[0;37m'
 NC='\033[0m' # No Color
 
-DEFAULT_DOCKER_VERSION="1.0.7"
 echo "#!/usr/bin/env bash" > config.sh
 echo "DEFAULT_DOCKER_VERSION=\"${DEFAULT_DOCKER_VERSION}\"" >> config.sh
 
