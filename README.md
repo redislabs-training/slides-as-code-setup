@@ -10,7 +10,7 @@ The only requirement is to have Docker installed on your computer. Refer to the 
 Clone the repo and run the setup script.
 
 ```
-git clone git@github.com:redislabs-training/slides-as-code-setup.git
+git clone https://github.com/redislabs-training/slides-as-code-setup.git
 cd slides-as-code-setup
 ./setup.sh
 ```
