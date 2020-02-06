@@ -42,11 +42,9 @@ Start editing your new presentation and look at the changes show up in the brows
 
 ### Quick Reference
 ```
-./rls.sh init                       - Creates a default presentation.md file 
-              you can use as a starting point
-./rls.sh serve [-p {PORT_NUMBER}]     - Serves the slidedeck in a browser
-./rls.sh export                     - Exports the slidedeck as a standalone html 
-              file (no dependencies)
+./rls.sh init                       - Creates a default presentation.md file you can use as a starting point
+./rls.sh serve [-p {PORT_NUMBER}]   - Serves the slidedeck in a browser
+./rls.sh export                     - Exports the slidedeck as a standalone html file (no dependencies)
 ./rls.sh pdf                        - Exports the slidedeck as a pdf
 ```
 
