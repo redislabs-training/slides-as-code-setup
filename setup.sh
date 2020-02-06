@@ -22,7 +22,7 @@ printf "${HIGHLIGHT2}>>>${NC}"
 read GITHUB_USERNAME
 echo "GITHUB_USERNAME=\"${GITHUB_USERNAME}\"" >> config.sh
 
-printf "${HIGHLIGHT1}What's your Github token?${NC}\n"
+printf "${HIGHLIGHT1}What's your Github token (needs 'read:packages' permissions )?${NC}\n"
 printf "Check this link if you don't have one: https://help.github.com/en/github/authenticating-to-github/creating-a-personal-access-token-for-the-command-line\n"
 printf "${HIGHLIGHT2}>>>${NC}"
 read GITHUB_TOKEN

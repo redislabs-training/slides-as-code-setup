@@ -1,51 +1,87 @@
 # Wrapper script for slides-as-code
 
-This is a wrapper script over a dockerized version of the [slides-as-code](https://github.com/redislabs-training/slides-as-code-setup) project.
+This is a wrapper script over a dockerized version of the [slides-as-code](https://github.com/redislabs-training/slides-as-code-setup) project. We wrote a detailed post on [how to use it](https://redislabs.atlassian.net/wiki/spaces/TE/blog/2020/02/04/1001652723/How+to+set+up+Slides+as+Code+with+Docker).
 
 ## Requirements
 The only requirement is to have Docker installed on your computer. Refer to the [Docker installation page](https://docs.docker.com/install/) for instructions on how to do it.
 
-## Getting started
+## Installation
 
-Clone the repo and run the setup script.
+> Note: This script assumes you have Docker installed on your computer. 
+
+Choose a location to install the script (a good option would be `$HOME/opt`) then clone the repo and run the setup script.
 
 ```
+cd $HOME/opt
 git clone git@github.com:redislabs-training/slides-as-code-setup.git
 cd slides-as-code-setup
 ./setup.sh
 ```
  
+The setup script will pull a docker image and you'll be asked to input your Github username and an access token with `read:packages` permissions. This data will be stored in a `config.sh` file in your installation folder.
+
+## Getting started
+To create a new slide deck `cd` into a folder and run 
+```
+/path/to/installation/rls.sh init
+```
+This will scaffold all the necessary files and create a `presentation.md` file. Now you can view the presentation in a browser by running
+
+```
+/path/to/installation/rls.sh serve
+```
+
+Start editing your new presentation and look at the changes show up in the browser in real time. 
+
+
+
 
 ## Usage
+
+
+
 ### Quick Reference
 ```
 ./rls.sh init                       - Creates a default presentation.md file 
               you can use as a starting point
-./rls.sh serve -p {PORT_NUMBER}     - Serves the slidedeck in a browser
+./rls.sh serve [-p {PORT_NUMBER}]     - Serves the slidedeck in a browser
 ./rls.sh export                     - Exports the slidedeck as a standalone html 
               file (no dependencies)
 ./rls.sh pdf                        - Exports the slidedeck as a pdf
 ```
 
 ### Initialise a presentation
-After you clone the repo you need to set up a few configuration variables and initialise a presentation from the default template by running
+
+#### Starting a new presentation
+Create a folder for your presentation and run the init script:
 
 ```
-./setup.sh
-``` 
+mkdir {FOLDER_NAME}
+cd {FOLDER_NAME}
+/path/to/installation/rls.sh init
+```
+
+This will set up a new presentation for you and create a `package.info` file, storing the version of the docker image needed to run it.  
+A `.gitignore` file will be created for you as well, ignoring all template files, making sure you don't blow up your repository size unnecessarily. 
+
+#### Setting up an existing presentation
+Since template files are not meant to be committed in the repository, there has to be a way to "hydrate" your presentation after cloning so it works properly.
+  
+When a team member (or your future self) clones your presentation all they have to do (assuming they have slides-as-code installed) is run `/path/to/installation/rls.sh init` and the template files will be puled, along with the correct version of the docker image (defined in the `package.info file). 
+
 
 ### Serve your presentation
 You can edit the `presentation.md` with your changes and see the result in the browser. 
 
 ```
-./rls.sh serve
+/path/to/installation/rls.sh serve
 ```
 
 This command will start a webserver listening on the default port `4100` and will watch the `presentation.md` file for your changes. Every time you save the file your browser tab will refresh and you will see your latest changes. 
-If you want to run the server on a different port use the argument `-p {PORT_NUMBER}` as so:
+If you want to run the server on a different port use the argument `-p {PORT_NUMBER}` like so:
 
 ```
-./rls.sh serve -p {PORT_NUMBER}
+/path/to/installation/rls.sh serve -p {PORT_NUMBER}
 ```
 
 
@@ -54,14 +90,17 @@ If you want to run the server on a different port use the argument `-p {PORT_NUM
 Running the bellow command will create a `dist` directory in which you will see a single `html` file with all your assets and images inlined. Since it's a simple and standalone html file it can run on any platform, in any browser, giving you all the usual [Remark](https://github.com/gnab/remark) functions, like [presentation mode](https://github.com/gnab/remark/wiki/Presentation-mode), separate window (to put on another screen) and so on.
 
 ```
-./rls.sh export
+/path/to/installation/rls.sh export
 ```
 
 ### Export to a pdf file
+
+>Note: WIP! Currently pdf export doesn't work with the Docker installation. It should be fixed soon.
+
 Running the bellow command will create a `pdf` directory in which you can find your pdf file. 
 
 ```
-./rls.sh pdf
+/path/to/installation/rls.sh pdf
 ```
 
 If you have multiple build steps on one slide you can instruct the exporter to put all of them in a single slide by using the `--handouts` option: 
@@ -69,7 +108,6 @@ If you have multiple build steps on one slide you can instruct the exporter to p
 ./rls.sh pdf --handouts
 ```
 
->Note: Currently pdf export doesn't work with the Docker installation. It should be fixed soon.
 
 ### Format
 Slides are written in [Markdown](https://github.com/adam-p/markdown-here/wiki/Markdown-Cheatsheet), along with some useful **Remark.js** specific additions.
@@ -79,6 +117,13 @@ See the [Remark.js wiki](https://github.com/gnab/remark/wiki) for the specific s
 ## Styling
 
 The tool comes with its own set of predefined styles.
+
+### Slide types
+The RedisLabs style guide defines 4 main slide types: cover slide, separator slide, closing (ending) slide and an inner (content) slide.
+
+- For the cover slide use the class `.cover`
+- For the separator slides use the class `.separator`
+- For the closing slide use the class `.end`
 
 ### Grid system
 You can use a "bootstrap-like" grid system to organise your slide in columns. Every horizontal row is divided in 12 columns. One column is represented by the class `.col-1`, two columns by `.col-2` and so on.
@@ -132,7 +177,7 @@ To make an image responsive, just wrap it in a `.responsive` class:
 
 
 ### Positioning and Text
-There are many predefined styles for positioning and text, please refer to the stylesheets in the `template` folder to see them all.
+There are many predefined styles for positioning and text, please refer to the `main.scss` stylesheet in the `template` folder to see them all.
 
 ### Customize style
 
