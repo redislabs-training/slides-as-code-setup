@@ -14,11 +14,11 @@ GRAY='\033[0;37m'
 NC='\033[0m' # No Color
 
 
-if [ "$DOCKER_VERSION" == "" ]; then
+if [[ $DOCKER_VERSION == "" ]]; then
     DOCKER_VERSION=${DEFAULT_DOCKER_VERSION}
 fi
 
-if [ $2 = "-p" ]; then
+if [[ $2 = "-p" ]]; then
     PORT_NUMBER=${3}
 else
     PORT_NUMBER="4100"
@@ -30,9 +30,9 @@ CMD_LOGIN="docker login docker.pkg.github.com -u ${GITHUB_USERNAME} -p ${GITHUB_
 CMD_INIT="docker run --rm -d -v $PWD:/src docker.pkg.github.com/redislabs-training/slides-as-code/slides-as-code:${DOCKER_VERSION} init"
 CMD_SERVE="docker run --rm --init -p ${PORT_NUMBER}:${PORT_NUMBER} -v $PWD:/src docker.pkg.github.com/redislabs-training/slides-as-code/slides-as-code:${DOCKER_VERSION} serve -s -p ${PORT_NUMBER}"
 CMD_EXPORT="docker run --rm -d -v $PWD:/src docker.pkg.github.com/redislabs-training/slides-as-code/slides-as-code:${DOCKER_VERSION} export --l false"
+CMD_EXPORT_SYNC_TMP="docker run --rm -v $PWD:/src docker.pkg.github.com/redislabs-training/slides-as-code/slides-as-code:${DOCKER_VERSION} export --l false -o .tmp"
 CMD_PDF="docker run --rm -d -v $PWD:/src docker.pkg.github.com/redislabs-training/slides-as-code/slides-as-code:${DOCKER_VERSION} pdf"
-
-
+CMD_DECKTAPE="docker run --rm -t -v $PWD:/slides astefanutti/decktape /slides/.tmp/presentation.html /slides/dist/presentation.pdf"
 
 case "$1" in
 "init")
@@ -60,8 +60,12 @@ case "$1" in
     
     ;;
 "pdf")
-#    eval ${CMD_PDF};
-    printf "The PDF export feature is currently WIP with Docker."
+    [[ ! -d dist ]] && mkdir dist  # If directory "dist" doesn't exist - create it
+    eval ${CMD_EXPORT_SYNC_TMP}
+    eval ${CMD_DECKTAPE}
+    rm "${PWD}/.tmp/presentation.html"
+
+    printf "${HIGHLIGHT1}You presentation was exported in the ${HIGHLIGHT2}dist${HIGHLIGHT1} folder${NC}\n\n"
     ;;
 *) 
     printf "${HIGHLIGHT2}"
