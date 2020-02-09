@@ -60,7 +60,7 @@ cd {FOLDER_NAME}
 ```
 
 This will set up a new presentation for you and create a `package.info` file, storing the version of the docker image needed to run it.  
-A `.gitignore` file will be created for you as well, ignoring all template files, making sure you don't blow up your repository size unnecessarily. 
+A `.gitignore` file will be created for you as well, ignoring all template files, making sure you don't inflate your repository size unnecessarily. 
 
 #### Setting up an existing presentation
 Since template files are not meant to be committed in the repository, there has to be a way to "hydrate" your presentation after cloning so it works properly.
@@ -85,15 +85,13 @@ If you want to run the server on a different port use the argument `-p {PORT_NUM
 
 ### Export to a standalone html file
 
-Running the bellow command will create a `dist` directory in which you will see a single `html` file with all your assets and images inlined. Since it's a simple and standalone html file it can run on any platform, in any browser, giving you all the usual [Remark](https://github.com/gnab/remark) functions, like [presentation mode](https://github.com/gnab/remark/wiki/Presentation-mode), separate window (to put on another screen) and so on.
+Running the bellow command will create a `dist` directory in which you will see a single `.html` file with all your assets and images inlined. Since it's a simple and standalone html file it can run on any platform, in any browser, giving you all the usual [Remark](https://github.com/gnab/remark) functions, like [presentation mode](https://github.com/gnab/remark/wiki/Presentation-mode), separate window (to put on another screen) and so on.
 
 ```
 /path/to/installation/rls.sh export
 ```
 
 ### Export to a pdf file
-
->Note: WIP! Currently pdf export doesn't work with the Docker installation. It should be fixed soon.
 
 Running the bellow command will create a `pdf` directory in which you can find your pdf file. 
 
@@ -117,11 +115,14 @@ See the [Remark.js wiki](https://github.com/gnab/remark/wiki) for the specific s
 The tool comes with its own set of predefined styles.
 
 ### Slide types
+
 The RedisLabs style guide defines 4 main slide types: cover slide, separator slide, closing (ending) slide and an inner (content) slide.
 
 - For the cover slide use the class `.cover`
 - For the separator slides use the class `.separator`
 - For the closing slide use the class `.end`
+
+You can see an example usage of these styles in the presentation template created on `rls.sh init`.
 
 ### Grid system
 You can use a "bootstrap-like" grid system to organise your slide in columns. Every horizontal row is divided in 12 columns. One column is represented by the class `.col-1`, two columns by `.col-2` and so on.
