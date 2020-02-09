@@ -23,12 +23,12 @@ The setup script will pull a docker image and you'll be asked to input your Gith
 ## Getting started
 To create a new slide deck `cd` into a folder and run 
 ```
-/path/to/installation/rls.sh init
+/path/to/rls.sh init
 ```
 This will scaffold all the necessary files and create a `presentation.md` file. Now you can view the presentation in a browser by running
 
 ```
-/path/to/installation/rls.sh serve
+/path/to/rls.sh serve
 ```
 
 Start editing your new presentation and look at the changes show up in the browser in real time. 
@@ -56,7 +56,7 @@ Create a folder for your presentation and run the init script:
 ```
 mkdir {FOLDER_NAME}
 cd {FOLDER_NAME}
-/path/to/installation/rls.sh init
+/path/to/rls.sh init
 ```
 
 This will set up a new presentation for you and create a `package.info` file, storing the version of the docker image needed to run it.  
@@ -65,21 +65,21 @@ A `.gitignore` file will be created for you as well, ignoring all template files
 #### Setting up an existing presentation
 Since template files are not meant to be committed in the repository, there has to be a way to "hydrate" your presentation after cloning so it works properly.
   
-When a team member (or your future self) clones your presentation all they have to do (assuming they have slides-as-code installed) is run `/path/to/installation/rls.sh init` and the template files will be puled, along with the correct version of the docker image (defined in the `package.info file). 
+When a team member (or your future self) clones your presentation all they have to do (assuming they have slides-as-code installed) is run `/path/to/rls.sh init` and the template files will be puled, along with the correct version of the docker image (defined in the `package.info file). 
 
 
 ### Serve your presentation
 You can edit the `presentation.md` with your changes and see the result in the browser. 
 
 ```
-/path/to/installation/rls.sh serve
+/path/to/rls.sh serve
 ```
 
 This command will start a webserver listening on the default port `4100` and will watch the `presentation.md` file for your changes. Every time you save the file your browser tab will refresh and you will see your latest changes. 
 If you want to run the server on a different port use the argument `-p {PORT_NUMBER}` like so:
 
 ```
-/path/to/installation/rls.sh serve -p {PORT_NUMBER}
+/path/to/rls.sh serve -p {PORT_NUMBER}
 ```
 
 
@@ -88,7 +88,7 @@ If you want to run the server on a different port use the argument `-p {PORT_NUM
 Running the bellow command will create a `dist` directory in which you will see a single `.html` file with all your assets and images inlined. Since it's a simple and standalone html file it can run on any platform, in any browser, giving you all the usual [Remark](https://github.com/gnab/remark) functions, like [presentation mode](https://github.com/gnab/remark/wiki/Presentation-mode), separate window (to put on another screen) and so on.
 
 ```
-/path/to/installation/rls.sh export
+/path/to/rls.sh export
 ```
 
 ### Export to a pdf file
@@ -96,12 +96,12 @@ Running the bellow command will create a `dist` directory in which you will see 
 Running the bellow command will create a `pdf` directory in which you can find your pdf file. 
 
 ```
-/path/to/installation/rls.sh pdf
+/path/to/rls.sh pdf
 ```
 
 If you have multiple build steps on one slide you can instruct the exporter to put all of them in a single slide by using the `--handouts` option: 
 ```
-./rls.sh pdf --handouts
+/path/to/rls.sh pdf --handouts
 ```
 
 
@@ -184,3 +184,13 @@ Just edit the `template/style.scss` file and make changes according to your need
 The base theme already provides some helpful additions.
 
 The stylesheet is written in [Sass](http://sass-lang.com), but you can use plain CSS instead if you feel like it, as long as you don't change the file extension.
+
+
+
+## Presenting
+
+We recommend exporting your presentation to a standalone html file with the `/path/to/rls.sh export` command and presenting from it. That way even if the internet connection happens to fail, your presentation will still work properly.
+
+You can press `C` to create a separate tab that you can show on the projector screen. Then go back to the original slide and click `P` to show your presenter notes on your computer's screen. Use the arrows to navigate back and forward through the slides.  
+
+There are a few more interesting options you can explore. Press `?` to see a menu listing all of them.
