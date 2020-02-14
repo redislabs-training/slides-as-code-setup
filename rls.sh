@@ -34,9 +34,11 @@ CMD_EXPORT_SYNC_TMP="docker run --rm -v $PWD:/src docker.pkg.github.com/redislab
 CMD_PDF="docker run --rm -d -v $PWD:/src docker.pkg.github.com/redislabs-training/slides-as-code/slides-as-code:${DOCKER_VERSION} pdf"
 CMD_DECKTAPE="docker run --rm -t -v $PWD:/slides astefanutti/decktape /slides/.tmp/presentation.html /slides/dist/presentation.pdf"
 
+eval ${CMD_LOGIN}
+
 case "$1" in
 "init")
-    if ( eval ${CMD_INIT} ) || ( eval ${CMD_LOGIN} && eval ${CMD_INIT} ); then
+    if eval ${CMD_INIT} ; then
         printf "${HIGHLIGHT1}You presentation ${HIGHLIGHT2}presentation.md${HIGHLIGHT1} was initialised successfully. Serve it by running ./rls.sh serve and Have fun!${NC}\n\n"
 
 #        Set the docker version this presentation uses
@@ -48,8 +50,7 @@ case "$1" in
     fi
     ;;
 "serve")
-    sleep 4 && open http://localhost:${PORT_NUMBER}/presentation.html &
-    eval ${CMD_SERVE}  ||  ( eval ${CMD_LOGIN} && eval ${CMD_SERVE} )
+    sleep 4 && open http://localhost:${PORT_NUMBER}/presentation.html & eval ${CMD_SERVE}
     ;;
 "export")
     if eval ${CMD_EXPORT}; then
