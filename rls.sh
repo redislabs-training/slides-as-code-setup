@@ -30,8 +30,7 @@ CMD_LOGIN="docker login docker.pkg.github.com -u ${GITHUB_USERNAME} -p ${GITHUB_
 CMD_INIT="docker run --rm -d -v $PWD:/src docker.pkg.github.com/redislabs-training/slides-as-code/slides-as-code:${DOCKER_VERSION} init"
 CMD_SERVE="docker run --rm --init -p ${PORT_NUMBER}:${PORT_NUMBER} -v $PWD:/src docker.pkg.github.com/redislabs-training/slides-as-code/slides-as-code:${DOCKER_VERSION} serve /src -s -p ${PORT_NUMBER}"
 CMD_EXPORT="docker run --rm -d -v $PWD:/src docker.pkg.github.com/redislabs-training/slides-as-code/slides-as-code:${DOCKER_VERSION} export --l false"
-CMD_EXPORT_SYNC_TMP="docker run --rm -v $PWD:/src docker.pkg.github.com/redislabs-training/slides-as-code/slides-as-code:${DOCKER_VERSION} export --l false -o .tmp"
-CMD_PDF="docker run --rm -d -v $PWD:/src docker.pkg.github.com/redislabs-training/slides-as-code/slides-as-code:${DOCKER_VERSION} pdf"
+CMD_EXPORT_SYNC_TMP="docker run --rm -v $PWD:/src docker.pkg.github.com/redislabs-training/slides-as-code/slides-as-code:${DOCKER_VERSION} export --l false -o .tmp $2"
 CMD_DECKTAPE="docker run --rm -t -v $PWD:/slides astefanutti/decktape /slides/.tmp/presentation.html /slides/dist/presentation.pdf"
 
 eval ${CMD_LOGIN}

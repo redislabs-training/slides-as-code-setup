@@ -67,6 +67,10 @@ Since template files are not meant to be committed in the repository, there has 
   
 When a team member (or your future self) clones your presentation all they have to do (assuming they have slides-as-code installed) is run `/path/to/rls.sh init` and the template files will be puled, along with the correct version of the docker image (defined in the `package.info file). 
 
+#### Updating a presentation to a new version (using new template files)
+Update the `package.info` file to the desired version and run `/path/to/rls.sh init`. 
+This command will overwrite all template files and images, but will leave out your images and any custom styles you created in `template/custom.scss`.
+
 
 ### Serve your presentation
 You can edit the `presentation.md` with your changes and see the result in the browser. 
@@ -99,7 +103,7 @@ Running the bellow command will create a `pdf` directory in which you can find y
 /path/to/rls.sh pdf
 ```
 
-If you have multiple build steps on one slide you can instruct the exporter to put all of them in a single slide by using the `--handouts` option: 
+If you have multiple build steps on one slide you can instruct the exporter to put all of them in a single slide by using the `--handouts` or `-h` option: 
 ```
 /path/to/rls.sh pdf --handouts
 ```
