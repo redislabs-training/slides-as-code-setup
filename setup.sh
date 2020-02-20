@@ -1,6 +1,6 @@
 #!/usr/bin/env bash
 
-DEFAULT_DOCKER_VERSION="1.1.3"
+DEFAULT_DOCKER_VERSION="1.1.4"
 
 
 # Colours definition
