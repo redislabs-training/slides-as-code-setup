@@ -8,7 +8,7 @@ write_config_file() {
 }
 
 get_latest_version() {
-    LATEST_DOCKER_VERSION=`curl -u ${GITHUB_USERNAME}:${GITHUB_TOKEN} https://raw.githubusercontent.com/redislabs-training/slides-as-code/master/latest`
+    LATEST_DOCKER_VERSION=`curl -u ${GITHUB_USERNAME}:${GITHUB_TOKEN} https://raw.githubusercontent.com/redislabs-training/slides-as-code/master/version`
 }
 
 docker_login() {
