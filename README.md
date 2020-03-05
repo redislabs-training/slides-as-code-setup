@@ -67,7 +67,7 @@ Since template files are not meant to be committed in the repository, there has 
   
 When a team member (or your future self) clones your presentation all they have to do (assuming they have slides-as-code installed) is run `/path/to/rls.sh init` and the template files will be puled, along with the correct version of the docker image (defined in the `package.info file). 
 
-#### Updating a presentation to a specific version (using new template files)
+#### Updating a presentation (new template files)
 To update to the latest version run `/path/to/rls.sh update`. 
 This command will overwrite all template files and images, but will leave out your images and any custom styles you created in `template/custom.scss`.
 
