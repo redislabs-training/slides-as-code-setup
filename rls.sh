@@ -56,6 +56,8 @@ case "$1" in
     ;;
 "update")
     get_latest_version
+    DOCKER_VERSION=${LATEST_DOCKER_VERSION}
+    
     # Update package.info with the docker version this presentation is being updated to
     echo "#!/usr/bin/env bash" > package.info
     echo "DOCKER_VERSION=\"${LATEST_DOCKER_VERSION}\"" >> package.info
