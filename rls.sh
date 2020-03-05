@@ -60,6 +60,8 @@ case "$1" in
     echo "#!/usr/bin/env bash" > package.info
     echo "DOCKER_VERSION=\"${LATEST_DOCKER_VERSION}\"" >> package.info
     printf "Updated to docker image version ${SUCCESS} ${LATEST_DOCKER_VERSION} ${NC}\n\n"
+    
+    rls_init
     ;;    
 *) 
     printf "${HIGHLIGHT2}"
@@ -68,6 +70,7 @@ case "$1" in
     printf "\t${HIGHLIGHT2}serve${HIGHLIGHT1}       - Serves the slide deck in a browser\n"
     printf "\t${HIGHLIGHT2}export${HIGHLIGHT1}      - Exports the slide deck as a standalone html file (no dependencies)\n"
     printf "\t${HIGHLIGHT2}pdf${HIGHLIGHT1}         - Exports the slide deck as a pdf\n"
+    printf "\t${HIGHLIGHT2}update${HIGHLIGHT1}      - Updates an existent presentation to the latest version"
     printf "${NC}"
     ;;
 esac
