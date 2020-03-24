@@ -1,6 +1,6 @@
 # Wrapper script for slides-as-code
 
-This is a wrapper script over a dockerized version of the [slides-as-code](https://github.com/redislabs-training/slides-as-code-setup) project. We wrote a detailed post on [how to use it](https://redislabs.atlassian.net/wiki/spaces/TE/blog/2020/02/04/1001652723/How+to+set+up+Slides+as+Code+with+Docker).
+This is a wrapper script over a dockerized version of the [slides-as-code](https://github.com/redislabs-training/slides-as-code-setup) project. We wrote a detailed post on [how to set it up](https://redislabs.atlassian.net/wiki/spaces/TE/blog/2020/02/04/1001652723/How+to+set+up+Slides+as+Code+with+Docker) and another one on [how to use it](https://redislabs.atlassian.net/wiki/spaces/TE/blog/2020/03/20/1130561556/How+to+use+Slides+as+code).
 
 ## Requirements
 The only requirement is to have Docker installed on your computer. Refer to the [Docker installation page](https://docs.docker.com/install/) for instructions on how to do it.
