@@ -62,7 +62,10 @@ case "$1" in
     echo "#!/usr/bin/env bash" > package.info
     echo "DOCKER_VERSION=\"${LATEST_DOCKER_VERSION}\"" >> package.info
     printf "Updated to docker image version ${SUCCESS} ${LATEST_DOCKER_VERSION} ${NC}\n\n"
-    
+    cp presentation.md presentation.md-bak
+    sed -i '' 's/img\/logo\.jpg/img\/logo_dark_text\.png/g' presentation.md
+    sed -i '' 's/img\/logo_dark_text.jpg/img\/logo_dark_text.png/g' presentation.md
+    printf "Updated some logo images to match new slide template. Just in case it broke something, there is a backup: presentation.md-bak.\n\n"
     rls_init
     ;;    
 *) 
@@ -72,7 +75,7 @@ case "$1" in
     printf "\t${HIGHLIGHT2}serve${HIGHLIGHT1}       - Serves the slide deck in a browser\n"
     printf "\t${HIGHLIGHT2}export${HIGHLIGHT1}      - Exports the slide deck as a standalone html file (no dependencies)\n"
     printf "\t${HIGHLIGHT2}pdf${HIGHLIGHT1}         - Exports the slide deck as a pdf\n"
-    printf "\t${HIGHLIGHT2}update${HIGHLIGHT1}      - Updates an existent presentation to the latest version"
+    printf "\t${HIGHLIGHT2}update${HIGHLIGHT1}      - Updates an existing presentation to the latest version"
     printf "${NC}"
     ;;
 esac
