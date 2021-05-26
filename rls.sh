@@ -55,6 +55,7 @@ case "$1" in
     printf "${HIGHLIGHT1}You presentation was exported in the ${HIGHLIGHT2}dist${HIGHLIGHT1} folder${NC}\n\n"
     ;;
 "update")
+    CURRENT_VERSION=$DOCKER_VERSION
     get_latest_version
     DOCKER_VERSION=${LATEST_DOCKER_VERSION}
     
@@ -62,10 +63,15 @@ case "$1" in
     echo "#!/usr/bin/env bash" > package.info
     echo "DOCKER_VERSION=\"${LATEST_DOCKER_VERSION}\"" >> package.info
     printf "Updated to docker image version ${SUCCESS} ${LATEST_DOCKER_VERSION} ${NC}\n\n"
-    cp presentation.md presentation.md-bak
-    sed -i '' 's/img\/logo\.jpg/img\/logo_dark_text\.png/g' presentation.md
-    sed -i '' 's/img\/logo_dark_text.jpg/img\/logo_dark_text.png/g' presentation.md
-    printf "Updated some logo images to match new slide template. Just in case it broke something, there is a backup: presentation.md-bak.\n\n"
+
+    # Update logos to the new template. Only needs to be done for pre 1.1.18 version when they were introduced.
+    if [[ $CURRENT_VERSION < "1.1.18" ]]; then
+        cp presentation.md presentation.md-bak
+        sed -i '' 's/img\/logo\.jpg/img\/logo_dark_text\.png/g' presentation.md
+        sed -i '' 's/img\/logo_dark_text.jpg/img\/logo_dark_text.png/g' presentation.md
+        printf "Updated some logo images to match new slide template. Just in case it broke something, there is a backup: presentation.md-bak.\n\n"
+    fi
+    
     rls_init
     ;;    
 *) 
