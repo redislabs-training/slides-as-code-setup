@@ -63,6 +63,8 @@ case "$1" in
     echo "#!/usr/bin/env bash" > package.info
     echo "DOCKER_VERSION=\"${LATEST_DOCKER_VERSION}\"" >> package.info
     printf "Updated to docker image version ${SUCCESS} ${LATEST_DOCKER_VERSION} ${NC}\n\n"
+    
+    rls_init
 
     # Update logos to the new template. Only needs to be done for pre 1.1.18 version when they were introduced.
     if [[ $CURRENT_VERSION < "1.1.18" ]]; then
@@ -72,7 +74,6 @@ case "$1" in
         printf "Updated some logo images to match new slide template. Just in case it broke something, there is a backup: presentation.md-bak.\n\n"
     fi
     
-    rls_init
     ;;    
 *) 
     printf "${HIGHLIGHT2}"
