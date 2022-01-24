@@ -67,11 +67,14 @@ case "$1" in
     rls_init
 
     # Update logos to the new template. Only needs to be done for pre 1.1.18 version when they were introduced.
-    if [[ $CURRENT_VERSION < "1.1.18" ]]; then
+    if [[ $CURRENT_VERSION < "1.1.32" ]]; then
         cp presentation.md presentation.md-bak
-        sed -i '' 's/img\/logo\.jpg/img\/logo_dark_text\.png/g' presentation.md
-        sed -i '' 's/img\/logo_dark_text.jpg/img\/logo_dark_text.png/g' presentation.md
-        printf "Updated some logo images to match new slide template. Just in case it broke something, there is a backup: presentation.md-bak.\n\n"
+        sed -i '' 's/background-size: 100%/background-size: cover/g' presentation.md
+        if [[ $CURRENT_VERSION < "1.1.18" ]]; then
+            sed -i '' 's/img\/logo\.jpg/img\/logo_dark_text\.png/g' presentation.md
+            sed -i '' 's/img\/logo_dark_text.jpg/img\/logo_dark_text.png/g' presentation.md
+        fi
+        printf "Styling updated to match the new slide template. A backup of the old presentation was created: presentation.md-bak.\n\n"
     fi
     
     ;;    
