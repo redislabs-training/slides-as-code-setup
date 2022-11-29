@@ -32,7 +32,7 @@ rls_serve() {
 }
 
 rls_export() {
-    docker run --rm -d -v $PWD:/src docker.pkg.github.com/redislabs-training/slides-as-code/slides-as-code:${DOCKER_VERSION} export --l false
+    docker run --rm -v $PWD:/src docker.pkg.github.com/redislabs-training/slides-as-code/slides-as-code:${DOCKER_VERSION} export --l false
 }
 
 rls_export_sync_tmp() {
