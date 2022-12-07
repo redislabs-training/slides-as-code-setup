@@ -2,3 +2,4 @@ img
 template
 dist
 .tmp
+config.sh
