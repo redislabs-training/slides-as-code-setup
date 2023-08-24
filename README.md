@@ -9,6 +9,8 @@ The only requirement is to have Docker installed on your computer. Refer to the 
 
 > Note: This script assumes you have Docker installed on your computer. 
 
+Start Up Docker (probably Docker Desktop)
+
 Choose a location to install the script (a good option would be `$HOME/opt`) then clone the repo and run the setup script.
 
 ```
