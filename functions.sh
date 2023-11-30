@@ -40,5 +40,5 @@ rls_export_sync_tmp() {
 }
 
 rls_pdf() {
-    docker run --rm -t -v $PWD:/slides technicalenablement/sac-dt:latest --page-load-timeout 60000 /slides/.tmp/presentation.html /slides/dist/presentation.pdf
+    docker run --rm -t -v $PWD:/slides ghcr.io/astefanutti/decktape:master --page-load-timeout 60000 /slides/.tmp/presentation.html /slides/dist/presentation.pdf
 }
