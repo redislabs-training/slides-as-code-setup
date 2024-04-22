@@ -19,6 +19,7 @@ else
     PORT_NUMBER="4100"
 fi
 
+
 printf "Using docker image version ${SUCCESS} ${DOCKER_VERSION} ${NC}\n\n"
 
 docker_login
@@ -49,7 +50,13 @@ case "$1" in
 "pdf")
     [[ ! -d dist ]] && mkdir dist  # If directory "dist" doesn't exist - create it
     rls_export_sync_tmp # Export the html with all assets inlined, used as input for the pdf export
-    rls_pdf
+    if [[ $2 = "--use-title-as-filename" ]]; then
+        title=$(sed -n 's/^title:[[:space:]]*\(.*\)/\1/p' "presentation.md" | tr ' ' '-')
+        FILE_NAME=${title}.pdf
+    else
+        FILE_NAME=presentation.pdf
+    fi
+    rls_pdf $FILE_NAME
     rm "${PWD}/.tmp/presentation.html"
 
     printf "${HIGHLIGHT1}You presentation was exported in the ${HIGHLIGHT2}dist${HIGHLIGHT1} folder${NC}\n\n"
