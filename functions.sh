@@ -8,7 +8,8 @@ write_config_file() {
 }
 
 get_latest_version() {
-    LATEST_DOCKER_VERSION=`curl -u ${GITHUB_USERNAME}:${GITHUB_TOKEN} https://raw.githubusercontent.com/redislabs-training/slides-as-code/master/version`
+    LATEST_DOCKER_VERSION=1.1.46
+    # LATEST_DOCKER_VERSION=`curl -u ${GITHUB_USERNAME}:${GITHUB_TOKEN} https://raw.githubusercontent.com/redislabs-training/slides-as-code/master/version`
 }
 
 docker_login() {
@@ -40,5 +41,5 @@ rls_export_sync_tmp() {
 }
 
 rls_pdf() {
-    docker run --rm -t -v $PWD:/slides technicalenablement/sac-dt:latest --page-load-timeout 60000 /slides/.tmp/presentation.html /slides/dist/presentation.pdf
+    docker run --rm -t -v $PWD:/slides ghcr.io/astefanutti/decktape:master --page-load-timeout 60000 /slides/.tmp/presentation.html /slides/dist/$1
 }
